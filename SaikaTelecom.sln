@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{47BBF617-653B-47AE-B8F2-33DD60B349C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D2FB87D1-DFC6-498C-987F-D8CEE3A32456}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{33A79A71-6EC9-47FC-A0FF-B82729DEE702}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaikaTelecom.DAL", "SaikaTelecom.DAL\SaikaTelecom.DAL.csproj", "{12A5F169-F374-4AAC-8F8C-07AE54423143}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaikaTelecom.Domain", "SaikaTelecom.Domain\SaikaTelecom.Domain.csproj", "{81088955-7815-48D0-92F7-1814FC9D08D3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaikaTelecom.API", "SaikaTelecom.API\SaikaTelecom.API.csproj", "{966C50D7-78FD-4F3F-9EA7-F4508F23AC86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12A5F169-F374-4AAC-8F8C-07AE54423143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12A5F169-F374-4AAC-8F8C-07AE54423143}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12A5F169-F374-4AAC-8F8C-07AE54423143}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12A5F169-F374-4AAC-8F8C-07AE54423143}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81088955-7815-48D0-92F7-1814FC9D08D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81088955-7815-48D0-92F7-1814FC9D08D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81088955-7815-48D0-92F7-1814FC9D08D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81088955-7815-48D0-92F7-1814FC9D08D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{966C50D7-78FD-4F3F-9EA7-F4508F23AC86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966C50D7-78FD-4F3F-9EA7-F4508F23AC86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966C50D7-78FD-4F3F-9EA7-F4508F23AC86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{966C50D7-78FD-4F3F-9EA7-F4508F23AC86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{12A5F169-F374-4AAC-8F8C-07AE54423143} = {D2FB87D1-DFC6-498C-987F-D8CEE3A32456}
+		{81088955-7815-48D0-92F7-1814FC9D08D3} = {47BBF617-653B-47AE-B8F2-33DD60B349C1}
+		{966C50D7-78FD-4F3F-9EA7-F4508F23AC86} = {33A79A71-6EC9-47FC-A0FF-B82729DEE702}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0988AF3F-4DF7-4389-9B43-975211F09BAA}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>12489c53-6893-431e-8f19-4bfe62db4282</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SaikaTelecom-CRM\SaikaTelecom.DAL\SaikaTelecom.DAL.csproj" />
+    <ProjectReference Include="..\SaikaTelecom.DAL\SaikaTelecom.DAL.csproj" />
+  </ItemGroup>
+
+</Project>
