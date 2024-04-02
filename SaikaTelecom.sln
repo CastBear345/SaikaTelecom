@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaikaTelecom.Domain", "Saik
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaikaTelecom.API", "SaikaTelecom.API\SaikaTelecom.API.csproj", "{966C50D7-78FD-4F3F-9EA7-F4508F23AC86}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaikaTelecom.Application", "SaikaTelecom.Application\SaikaTelecom.Application.csproj", "{5AEB3132-58C7-4DD0-B46D-02120E247A45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{966C50D7-78FD-4F3F-9EA7-F4508F23AC86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{966C50D7-78FD-4F3F-9EA7-F4508F23AC86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{966C50D7-78FD-4F3F-9EA7-F4508F23AC86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AEB3132-58C7-4DD0-B46D-02120E247A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AEB3132-58C7-4DD0-B46D-02120E247A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AEB3132-58C7-4DD0-B46D-02120E247A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AEB3132-58C7-4DD0-B46D-02120E247A45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 		{12A5F169-F374-4AAC-8F8C-07AE54423143} = {D2FB87D1-DFC6-498C-987F-D8CEE3A32456}
 		{81088955-7815-48D0-92F7-1814FC9D08D3} = {47BBF617-653B-47AE-B8F2-33DD60B349C1}
 		{966C50D7-78FD-4F3F-9EA7-F4508F23AC86} = {33A79A71-6EC9-47FC-A0FF-B82729DEE702}
+		{5AEB3132-58C7-4DD0-B46D-02120E247A45} = {47BBF617-653B-47AE-B8F2-33DD60B349C1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0988AF3F-4DF7-4389-9B43-975211F09BAA}
