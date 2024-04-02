@@ -6,7 +6,7 @@ public class User
 {
     public long Id { get; set; }
 
-    public string FullName { get; set; }
+    public string? FullName { get; set; }
 
     public string Email { get; set; }
 
@@ -14,5 +14,5 @@ public class User
 
     public Roles Role { get; set; }
 
-    public DateTime BlockingDate { get; set; }
+    public DateTime? BlockingDate { get; set; }
 }

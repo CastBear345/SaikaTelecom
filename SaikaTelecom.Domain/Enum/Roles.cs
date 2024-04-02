@@ -2,7 +2,7 @@
 
 public enum Roles
 {
-    Admin,
-    Marketing,
-    Sales
+    Admin = 1,
+    Marketing = 2,
+    Sales = 3
 }
