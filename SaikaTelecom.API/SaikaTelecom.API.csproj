@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SaikaTelecom-CRM\SaikaTelecom.DAL\SaikaTelecom.DAL.csproj" />
     <ProjectReference Include="..\SaikaTelecom.DAL\SaikaTelecom.DAL.csproj" />
   </ItemGroup>
 
