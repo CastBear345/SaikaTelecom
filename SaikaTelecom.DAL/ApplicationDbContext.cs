@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SaikaTelecom.DAL.Configurations;
 using SaikaTelecom.Domain.Entities;
 
 namespace SaikaTelecom.DAL;
@@ -11,6 +12,6 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
     }
 }
