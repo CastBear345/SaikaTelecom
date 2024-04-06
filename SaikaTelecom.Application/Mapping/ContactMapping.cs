@@ -1,12 +1,13 @@
-﻿using AutoMapper;
-using SaikaTelecom.Domain.Entities;
-
-namespace SaikaTelecom.Application.Mapping;
+﻿namespace SaikaTelecom.Application.Mapping;
 
 public class ContactMapping : Profile
 {
     public ContactMapping()
     {
-        //CreateMap<Contact, >().ReverseMap();
+        CreateMap<Contact, ContactDto>().ReverseMap();
+
+        CreateMap<Contact, CreateContactDto>().ReverseMap();
+
+        CreateMap<Contact, UpdateContactDto>().ReverseMap();
     }
 }

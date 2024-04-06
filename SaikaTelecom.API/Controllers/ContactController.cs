@@ -1,14 +1,82 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace SaikaTelecom.API.Controllers;
+﻿namespace SaikaTelecom.API.Controllers;
 
 [ApiController]
-[Route("api/contact")]
+[Route("api/contacts")]
 public class ContactController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult Test()
+    private readonly ContactService _contactService;
+
+    public ContactController(ContactService contactService)
     {
-        return Ok();
+        _contactService = contactService;
+    }
+
+    [HttpGet("all")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<List<ContactDto>>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedResult))]
+    [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ForbidResult))]
+    public async Task<ActionResult<BaseResult<List<ContactDto>>>> GetAllContacts()
+    {
+        var response = await _contactService.GetAllContacts();
+        if (response.IsSuccess)
+            return Ok(response);
+
+        return BadRequest(response);
+    }
+
+    [HttpGet("lead")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<List<ContactDto>>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedResult))]
+    [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ForbidResult))]
+    public async Task<ActionResult<BaseResult<List<ContactDto>>>> GetLeadContacts()
+    {
+        var response = await _contactService.GetLeadContacts();
+        if (response.IsSuccess)
+            return Ok(response);
+
+        return BadRequest(response);
+    }
+
+    [HttpPost("add")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<ContactDto>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedResult))]
+    public async Task<ActionResult<BaseResult<ContactDto>>> CreateContact(CreateContactDto dto)
+    {
+        var response = await _contactService.CreateContact(dto);
+        if (response.IsSuccess)
+            return Ok(response);
+
+        return BadRequest(response);
+    }
+
+    [HttpPut("update/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<ContactDto>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedResult))]
+    [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ForbidResult))]
+    public async Task<ActionResult<BaseResult<ContactDto>>> UpdateContact(long id, UpdateContactDto dto)
+    {
+        var response = await _contactService.UpdateContact(id, dto);
+        if (response.IsSuccess)
+            return Ok(response);
+
+        return BadRequest(response);
+    }
+
+    [HttpPut("change-status/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<ContactDto>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedResult))]
+    [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ForbidResult))]
+    public async Task<ActionResult<BaseResult<ContactDto>>> ChangeContactStatus(long id, UpdateStatusInContactDto dto)
+    {
+        var response = await _contactService.ChangeContactStatus(id, dto);
+        if (response.IsSuccess)
+            return Ok(response);
+
+        return BadRequest(response);
     }
 }

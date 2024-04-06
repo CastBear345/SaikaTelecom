@@ -1,5 +1,3 @@
-using SaikaTelecom.DAL.DependencyInjection;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -10,6 +8,7 @@ builder.Services.AddAuthentication().AddCookie("cookie");
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDataAccessLayer(builder.Configuration);
+builder.Services.AddApplication();
 
 var app = builder.Build();
 

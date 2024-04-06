@@ -1,6 +1,6 @@
 ﻿namespace SaikaTelecom.Domain.Enum;
 
-public enum Status
+public enum ContactStatus
 {
     Cold = 1,
     Warm = 2,
