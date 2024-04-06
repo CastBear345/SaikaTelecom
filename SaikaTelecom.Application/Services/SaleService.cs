@@ -1,10 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using SaikaTelecom.DAL;
-using SaikaTelecom.Domain.Contracts.SaleDtos;
-using SaikaTelecom.Domain.Entities;
-
-namespace SaikaTelecom.Application.Services;
+﻿namespace SaikaTelecom.Application.Services;
 
 public class SaleService
 {
@@ -17,21 +11,48 @@ public class SaleService
         _mapper = mapper;
     }
 
-    public async Task<List<Sale>> GetAllSales()
+    public async Task<BaseResult<List<SaleResponse>>> GetAllSales()
     {
-        return await _dbContext.Sales.ToListAsync();
+        var sales = await _dbContext.Sales
+            .AsNoTracking()
+            .ToListAsync();
+
+        if (sales != null)
+            return new BaseResult<List<SaleResponse>>() { ErrorMessage = "There are no concluded contracts" };
+
+        return new BaseResult<List<SaleResponse>>() { Data = _mapper.Map<List<SaleResponse>>(sales) };
     }
 
-    public async Task<List<Sale>> GetBySellerId(long sellerId)
+    public async Task<BaseResult<List<SaleResponse>>> GetBySellerId(long sellerId)
     {
-        return await _dbContext.Sales.Where(s => s.SellerId == sellerId).ToListAsync();
+        var sales = await _dbContext.Sales
+            .AsNoTracking()
+            .Where(s => s.SellerId == sellerId)
+        .ToListAsync();
+
+        if (sales != null)
+            return new BaseResult<List<SaleResponse>>() { ErrorMessage = "The seller has no contracts" };
+
+        return new BaseResult<List<SaleResponse>>() { Data = _mapper.Map<List<SaleResponse>>(sales) };
     }
 
-    public async Task CreateSale(SaleGetDto dto)
+    public async Task<BaseResult<SaleResponse>> CreateSale(SaleGetDto dto)
     {
+        if (dto == null)
+            return new BaseResult<SaleResponse>() { ErrorMessage = "Sale data is null." };
+
+        var existingSale = await _dbContext.Sales
+            .AsNoTracking()
+            .FirstOrDefaultAsync(sale => sale.LeadId == dto.LeadId);
+
+        if (existingSale != null) 
+            return new BaseResult<SaleResponse>() { ErrorMessage = "An agreement has already been concluded with this lead." };
+
         var sale = _mapper.Map<Sale>(dto);
 
         await _dbContext.Sales.AddAsync(sale);
         await _dbContext.SaveChangesAsync();
+
+        return new BaseResult<SaleResponse>() { Data = _mapper.Map<SaleResponse>(sale) };
     }
 }

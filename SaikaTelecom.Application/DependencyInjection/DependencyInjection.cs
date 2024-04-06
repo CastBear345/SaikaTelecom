@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using SaikaTelecom.Application.Mapping;
-using SaikaTelecom.Application.Services;
-
-namespace SaikaTelecom.Application.DependencyInjection;
+﻿namespace SaikaTelecom.Application.DependencyInjection;
 
 public static class DependencyInjection
 {

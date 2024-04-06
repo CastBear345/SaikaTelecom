@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SaikaTelecom.Domain.Entities;
-
-namespace SaikaTelecom.DAL.Configurations;
+﻿namespace SaikaTelecom.DAL.Configurations;
 
 public class SaleConfiguration : IEntityTypeConfiguration<Sale>
 {

@@ -20,4 +20,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SaikaTelecom.Domain\SaikaTelecom.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

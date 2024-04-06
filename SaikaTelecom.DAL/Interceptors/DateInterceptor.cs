@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using SaikaTelecom.Domain.Entities;
-
-namespace SaikaTelecom.DAL.Interceptors;
+﻿namespace SaikaTelecom.DAL.Interceptors;
 
 public class DateInterceptor : SaveChangesInterceptor
 {
@@ -13,13 +9,13 @@ public class DateInterceptor : SaveChangesInterceptor
             return base.SavingChangesAsync(eventData, result, cancellationToken);
 
         var sales = dbContext.ChangeTracker.Entries<Sale>()
-            .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified)
+            .Where(e => e.State == EntityState.Added)
             .ToList();
         foreach (var sale in sales)
         {
             if (sale.State == EntityState.Added)
             {
-                sale.Property("DateOfSale").CurrentValue = DateTime.UtcNow;
+                sale.Property(x => x.DateOfSale).CurrentValue = DateTime.UtcNow;
             }
         }
 

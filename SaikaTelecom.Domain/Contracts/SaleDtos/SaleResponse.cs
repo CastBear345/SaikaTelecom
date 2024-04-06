@@ -2,7 +2,7 @@
 
 namespace SaikaTelecom.Domain.Contracts.SaleDtos;
 
-public class SaleGetDto
+public record SaleResponse
 {
     [Required]
     [Display(Name = "Идентификатор лида")]
@@ -11,4 +11,8 @@ public class SaleGetDto
     [Required]
     [Display(Name = "Идентификатор продавца")]
     public long SellerId { get; set; }
+
+    [Required]
+    [Display(Name = "Дата продажи")]
+    public DateTime DateOfSale { get; set; }
 }

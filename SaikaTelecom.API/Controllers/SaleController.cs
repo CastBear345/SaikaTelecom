@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SaikaTelecom.Application.Services;
-using SaikaTelecom.Domain.Contracts.SaleDtos;
-
-namespace SaikaTelecom.API.Controllers;
+﻿namespace SaikaTelecom.API.Controllers;
 
 [ApiController]
-[Route("api/sale/")]
+[Route("api/sales")]
 public class SaleController : ControllerBase
 {
     private readonly SaleService _saleService;
@@ -15,27 +11,44 @@ public class SaleController : ControllerBase
         _saleService = saleService;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetAll()
+    [HttpGet("all")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<List<SaleResponse>>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedResult))]
+    [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ForbidResult))]
+    public async Task<ActionResult<BaseResult<List<SaleResponse>>>> GetAll()
     {
-        var sales = await _saleService.GetAllSales();
+        var response = await _saleService.GetAllSales();
+        if (response.IsSuccess)
+            return Ok(response);
 
-        return Ok(sales);
+        return BadRequest(response);
     }
 
     [HttpGet("{sellerId}")]
-    public async Task<IActionResult> GetById(long sellerId)
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<List<SaleResponse>>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedResult))]
+    [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ForbidResult))]
+    public async Task<ActionResult<BaseResult<List<SaleResponse>>>> GetById(long sellerId)
     {
-        var sales = await _saleService.GetBySellerId(sellerId);
+        var response = await _saleService.GetBySellerId(sellerId);
+        if (response.IsSuccess)
+            return Ok(response);
 
-        return Ok(sales);
+        return BadRequest(response);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> CreateSale(SaleGetDto dto)
+    [HttpPost("add")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<SaleResponse>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedResult))]
+    public async Task<ActionResult<BaseResult<SaleResponse>>> CreateSale(SaleGetDto dto)
     {
-        await _saleService.CreateSale(dto);
+        var response = await _saleService.CreateSale(dto);
+        if (response.IsSuccess)
+            return Ok(response);
 
-        return NoContent();
+        return BadRequest(response);
     }
 }
