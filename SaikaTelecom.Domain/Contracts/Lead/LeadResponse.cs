@@ -6,15 +6,15 @@ namespace SaikaTelecom.Domain.Contracts.Lead;
 public record LeadResponse
 {
     [Required]
-    [Display(Name = "Идентификатор контакта")]
+    [Display(Name = "Id contact")]
     public long ContactId { get; set; }
 
     [Required]
-    [Display(Name = "Идентификатор продавца")]
+    [Display(Name = "Id seller")]
     public long? SellerId { get; set; }
 
     [Required]
-    [Display(Name = "Статус лида")]
+    [Display(Name = "Lead status")]
     [EnumDataType(typeof(LeadStatus))]
     public LeadStatus LeadStatus { get; set; }
 }

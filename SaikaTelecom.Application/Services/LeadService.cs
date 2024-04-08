@@ -11,6 +11,11 @@ public class LeadService
         _mapper = mapper;
     }
 
+    /// <summary>
+    /// Get leads for a specific seller.
+    /// </summary>
+    /// <param name="sellerId">The ID of the seller.</param>
+    /// <returns>A base result containing a list of lead responses or an error message.</returns>
     public async Task<BaseResult<List<LeadResponse>>> GetSellerLeads(long sellerId)
     {
         var lead = await _dbContext.Leads
@@ -23,6 +28,11 @@ public class LeadService
             : new BaseResult<List<LeadResponse>>() { Data = _mapper.Map<List<LeadResponse>>(lead) };
     }
 
+    /// <summary>
+    /// Create a new lead with the provided information.
+    /// </summary>
+    /// <param name="dto">DTO containing lead details.</param>
+    /// <returns>A base result containing the lead response or an error message.</returns>
     public async Task<BaseResult<LeadResponse>> CreateLead(LeadCreateDto dto)
     {
         var doesLeadExist = await _dbContext.Leads
@@ -43,6 +53,12 @@ public class LeadService
         return new BaseResult<LeadResponse>() { Data = _mapper.Map<LeadResponse>(lead) };
     }
 
+    /// <summary>
+    /// Change the status of a lead by ID.
+    /// </summary>
+    /// <param name="leadId">The ID of the lead.</param>
+    /// <param name="newStatus">The new status for the lead.</param>
+    /// <returns>A base result containing the lead response or an error message.</returns>
     public async Task<BaseResult<LeadResponse>> ChangeLeadStatus(long leadId, LeadStatus newStatus)
     {
         var lead = await _dbContext.Leads

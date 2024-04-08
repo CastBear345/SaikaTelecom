@@ -6,10 +6,10 @@ namespace SaikaTelecom.Domain.Contracts.Lead;
 public record LeadCreateDto
 {
     [Required]
-    [Display(Name = "Идентификатор контакта")]
+    [Display(Name = "Id contact")]
     public long ContactId { get; set; }
 
     [Required]
-    [Display(Name = "Идентификатор продавца")]
+    [Display(Name = "Id seller")]
     public long? SellerId { get; set; }
 }
