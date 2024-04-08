@@ -19,4 +19,10 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SaikaTelecom.Application\SaikaTelecom.Application.csproj" />
+    <ProjectReference Include="..\SaikaTelecom.DAL\SaikaTelecom.DAL.csproj" />
+    <ProjectReference Include="..\SaikaTelecom.Domain\SaikaTelecom.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
