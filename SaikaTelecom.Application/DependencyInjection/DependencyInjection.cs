@@ -16,5 +16,26 @@ public static class DependencyInjection
         services.AddScoped<ContactService>();
         services.AddScoped<SaleService>();
         services.AddScoped<LeadService>();
+        services.AddScoped<UserService>();
+        services.AddTransient<PasswordHasher>();
+
+        services.AddHttpContextAccessor();
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        services.AddAuthentication().AddCookie("Cookies", authenticationOptions =>
+        {
+            authenticationOptions.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+
+            authenticationOptions.Events.OnRedirectToLogin = (redirectContext) =>
+            {
+                redirectContext.Response.StatusCode = 401;
+                return Task.CompletedTask;
+            };
+
+            authenticationOptions.Events.OnRedirectToAccessDenied = (redirectContext) =>
+            {
+                redirectContext.Response.StatusCode = 403;
+                return Task.CompletedTask;
+            };
+        });
     }
 }

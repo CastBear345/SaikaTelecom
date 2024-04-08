@@ -5,6 +5,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Contact> Contacts => Set<Contact>();
     public DbSet<Sale> Sales => Set<Sale>();
     public DbSet<Lead> Leads => Set<Lead>();
+    public DbSet<User> Users => Set<User>();
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
@@ -19,5 +20,6 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new ContactConfiguration());
         modelBuilder.ApplyConfiguration(new SaleConfiguration());
         modelBuilder.ApplyConfiguration(new LeadConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
     }
 }

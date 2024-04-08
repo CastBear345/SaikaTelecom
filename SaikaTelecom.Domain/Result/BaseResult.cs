@@ -17,5 +17,5 @@ public class BaseResult<T> : BaseResult
         Data = data;
     }
 
-    public BaseResult() {}
+    public BaseResult() { }
 }
