@@ -7,6 +7,6 @@ public class UpdateStatusInContactDto
 {
     [Required]
     [EnumDataType(typeof(ContactStatus))]
-    [Display(Name = "Статус контакта")]
+    [Display(Name = "Contact status")]
     public ContactStatus Status { get; set; }
 }

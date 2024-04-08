@@ -6,43 +6,43 @@ namespace SaikaTelecom.Domain.Contracts;
 public class ContactDto
 {
     [Required]
-    [Display(Name = "Идентификатор")]
+    [Display(Name = "Id")]
     public long Id { get; set; }
 
     [Required]
-    [Display(Name = "Идентификатор маркетолога")]
+    [Display(Name = "Id marketer")]
     public long MarketerId { get; set; }
 
     [Required]
     [MaxLength(50)]
-    [Display(Name = "Имя")]
+    [Display(Name = "First name")]
     public string FirstName { get; set; }
 
     [MaxLength(50)]
-    [Display(Name = "Фамилия")]
+    [Display(Name = "Last name")]
     public string? LastName { get; set; }
 
     [MaxLength(50)]
-    [Display(Name = "Отчество")]
+    [Display(Name = "Sur name")]
     public string? SurName { get; set; }
 
     [Phone]
     [Required]
     [MaxLength(100)]
-    [Display(Name = "Номер телефона")]
+    [Display(Name = "Pgone number")]
     public string PhoneNumber { get; set; }
 
     [EmailAddress]
     [MaxLength(100)]
-    [Display(Name = "Адрес почты")]
+    [Display(Name = "E-mail address")]
     public string? Email { get; set; }
 
     [Required]
     [EnumDataType(typeof(ContactStatus))]
-    [Display(Name = "Статус контакта")]
+    [Display(Name = "Contact status")]
     public ContactStatus Status { get; set; }
 
     [Required]
-    [Display(Name = "Последнее изменение")]
+    [Display(Name = "Last changed")]
     public DateTime LastChanged { get; set; }
 }
