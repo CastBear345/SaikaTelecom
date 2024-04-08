@@ -1,9 +1,9 @@
 ﻿using SaikaTelecom.Domain.Enum;
 using System.ComponentModel.DataAnnotations;
 
-namespace SaikaTelecom.Domain.Contracts;
+namespace SaikaTelecom.Domain.Contacts;
 
-public class UpdateContactDto
+public class CreateContactDto
 {
     [Required]
     [MaxLength(100)]
@@ -28,4 +28,9 @@ public class UpdateContactDto
     [MaxLength(100)]
     [Display(Name = "E-mail address")]
     public string? Email { get; set; }
+
+    [Required]
+    [EnumDataType(typeof(ContactStatus))]
+    [Display(Name = "Contact status")]
+    public ContactStatus Status { get; set; }
 }

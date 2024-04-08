@@ -3,12 +3,15 @@
 public class ContactService
 {
     private readonly ApplicationDbContext _dbContext;
+    private readonly HttpContext _httpContext;
     private readonly IMapper _mapper;
+    private long CurrentUserId => long.Parse(_httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-    public ContactService(ApplicationDbContext dbContext, IMapper mapper) 
+    public ContactService(ApplicationDbContext dbContext, IMapper mapper, IHttpContextAccessor accessor)
     {
         _dbContext = dbContext;
         _mapper = mapper;
+        _httpContext = accessor.HttpContext ?? throw new ArgumentException(nameof(accessor.HttpContext));
     }
 
     /// <summary>
@@ -51,6 +54,7 @@ public class ContactService
 
         var newContact = _mapper.Map<Contact>(dto);
 
+        newContact.MarketerId = CurrentUserId;
         await _dbContext.Contacts.AddAsync(newContact);
         await _dbContext.SaveChangesAsync();
 

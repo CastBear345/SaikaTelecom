@@ -11,6 +11,7 @@ public class LeadController : ControllerBase
         _leadService = leadService;
     }
 
+    [Authorize(Roles = $"{nameof(Roles.Sales)}")]
     [HttpGet("{sellerId}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<LeadResponse>))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedResult))]
@@ -24,6 +25,7 @@ public class LeadController : ControllerBase
         return BadRequest(response.ErrorMessage);
     }
 
+    [Authorize(Roles = $"{nameof(Roles.Sales)}")]
     [HttpPost("add")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<LeadResponse>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
@@ -38,6 +40,7 @@ public class LeadController : ControllerBase
         return BadRequest(response.ErrorMessage);
     }
 
+    [Authorize(Roles = $"{nameof(Roles.Sales)}")]
     [HttpPut("status/{leadId}/{newStatus}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<LeadResponse>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]

@@ -15,5 +15,17 @@ public class LeadConfiguration : IEntityTypeConfiguration<Lead>
         builder
             .Property(u => u.ContactId)
             .IsRequired();
+
+        builder
+            .HasOne(l => l.Contact)
+            .WithOne()
+            .HasForeignKey<Lead>(l => l.ContactId)
+            .IsRequired();
+
+        builder
+            .HasOne(l => l.Seller)
+            .WithMany()
+            .HasForeignKey(l => l.SellerId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

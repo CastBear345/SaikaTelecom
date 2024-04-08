@@ -8,7 +8,11 @@ public class Lead
 
     public long ContactId { get; set; }
 
+    public Contact Contact { get; set; }
+
     public long? SellerId { get; set; }
+
+    public User? Seller { get; set; }
 
     public LeadStatus LeadStatus { get; set; }
 }

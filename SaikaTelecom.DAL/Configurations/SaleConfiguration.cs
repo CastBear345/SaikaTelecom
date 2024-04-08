@@ -15,5 +15,20 @@ public class SaleConfiguration : IEntityTypeConfiguration<Sale>
         builder
             .Property(s => s.SellerId)
             .IsRequired();
+
+        builder
+            .Property(s => s.DateOfSale)
+            .IsRequired();
+
+        builder
+            .HasOne(s => s.Lead)
+            .WithMany()
+            .HasForeignKey(s => s.LeadId);
+
+        builder
+            .HasOne(s => s.Seller)
+            .WithMany()
+            .HasForeignKey(s => s.SellerId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

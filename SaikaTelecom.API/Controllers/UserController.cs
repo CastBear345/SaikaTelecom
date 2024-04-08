@@ -27,7 +27,7 @@ public class UserController : ControllerBase
         return BadRequest(response);
     }
 
-    [Authorize(Roles = "Admin, Owner")]
+    [Authorize(Roles = $"{nameof(Roles.Admin)},{nameof(Roles.Owner)}")]
     [HttpPost("auth/sign-up")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<SignUpUserDto>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
@@ -45,7 +45,7 @@ public class UserController : ControllerBase
         return BadRequest(response);
     }
 
-    [Authorize(Roles = "Admin, Owner")]
+    [Authorize(Roles = $"{nameof(Roles.Admin)},{nameof(Roles.Owner)}")]
     [HttpGet("users")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<List<UserResponse>>))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedResult))]
@@ -78,7 +78,7 @@ public class UserController : ControllerBase
         return BadRequest(response);
     }
 
-    [Authorize(Roles = "Admin, Owner")]
+    [Authorize(Roles = $"{nameof(Roles.Admin)},{nameof(Roles.Owner)}")]
     [HttpPost("block/{userId}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
@@ -96,7 +96,7 @@ public class UserController : ControllerBase
         return BadRequest(response);
     }
 
-    [Authorize(Roles = "Admin, Owner")]
+    [Authorize(Roles = $"{nameof(Roles.Admin)},{nameof(Roles.Owner)}")]
     [HttpPost("unblock/{userId}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
@@ -114,7 +114,7 @@ public class UserController : ControllerBase
         return BadRequest(response);
     }
 
-    [Authorize(Roles = "Admin, Owner")]
+    [Authorize(Roles = $"{nameof(Roles.Admin)},{nameof(Roles.Owner)}")]
     [HttpDelete("delete/{userId}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
@@ -132,7 +132,7 @@ public class UserController : ControllerBase
         return BadRequest(response);
     }
 
-    [Authorize(Roles = "Admin, Owner")]
+    [Authorize(Roles = $"{nameof(Roles.Admin)},{nameof(Roles.Owner)}")]
     [HttpPost("role/{userId}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<UserResponse>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]

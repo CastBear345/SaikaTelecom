@@ -42,5 +42,10 @@ public class ContactConfiguration : IEntityTypeConfiguration<Contact>
         builder
             .Property(u => u.LastChanged)
             .IsRequired();
+
+        builder
+            .HasOne(c => c.Marketer)
+            .WithMany()
+            .HasForeignKey(c => c.MarketerId);
     }
 }

@@ -64,6 +64,8 @@ namespace SaikaTelecom.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MarketerId");
+
                     b.ToTable("Contacts");
                 });
 
@@ -87,6 +89,11 @@ namespace SaikaTelecom.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ContactId")
+                        .IsUnique();
+
+                    b.HasIndex("SellerId");
+
                     b.ToTable("Leads");
                 });
 
@@ -109,7 +116,102 @@ namespace SaikaTelecom.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("LeadId");
+
+                    b.HasIndex("SellerId");
+
                     b.ToTable("Sales");
+                });
+
+            modelBuilder.Entity("SaikaTelecom.Domain.Entities.User", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime?>("BlockingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FullName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Email = "castbear@email.com",
+                            FullName = "Tony Stark",
+                            PasswordHash = "$2a$11$r.KhCoDh427S7KHJ.ANp5eNKcpKw9h9UOy5EHE9VTOUwS91BwYfdS",
+                            Role = 0
+                        });
+                });
+
+            modelBuilder.Entity("SaikaTelecom.Domain.Entities.Contact", b =>
+                {
+                    b.HasOne("SaikaTelecom.Domain.Entities.User", "Marketer")
+                        .WithMany()
+                        .HasForeignKey("MarketerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Marketer");
+                });
+
+            modelBuilder.Entity("SaikaTelecom.Domain.Entities.Lead", b =>
+                {
+                    b.HasOne("SaikaTelecom.Domain.Entities.Contact", "Contact")
+                        .WithOne()
+                        .HasForeignKey("SaikaTelecom.Domain.Entities.Lead", "ContactId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SaikaTelecom.Domain.Entities.User", "Seller")
+                        .WithMany()
+                        .HasForeignKey("SellerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Contact");
+
+                    b.Navigation("Seller");
+                });
+
+            modelBuilder.Entity("SaikaTelecom.Domain.Entities.Sale", b =>
+                {
+                    b.HasOne("SaikaTelecom.Domain.Entities.Lead", "Lead")
+                        .WithMany()
+                        .HasForeignKey("LeadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SaikaTelecom.Domain.Entities.User", "Seller")
+                        .WithMany()
+                        .HasForeignKey("SellerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Lead");
+
+                    b.Navigation("Seller");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,12 +3,15 @@
 public class SaleService
 {
     private readonly ApplicationDbContext _dbContext;
+    private readonly HttpContext _httpContext;
     private readonly IMapper _mapper;
+    private long CurrentUserId => long.Parse(_httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-    public SaleService(ApplicationDbContext dbContext, IMapper mapper)
+    public SaleService(ApplicationDbContext dbContext, IMapper mapper, IHttpContextAccessor accessor)
     {
         _dbContext = dbContext;
         _mapper = mapper;
+        _httpContext = accessor.HttpContext ?? throw new ArgumentException(nameof(accessor.HttpContext));
     }
 
     /// <summary>
@@ -32,12 +35,12 @@ public class SaleService
     /// </summary>
     /// <param name="sellerId">The ID of the seller.</param>
     /// <returns>A base result containing a list of sale responses or an error message.</returns>
-    public async Task<BaseResult<List<SaleResponse>>> GetBySellerId(long sellerId)
+    public async Task<BaseResult<List<SaleResponse>>> GetSellerSale()
     {
         var sales = await _dbContext.Sales
             .AsNoTracking()
-            .Where(s => s.SellerId == sellerId)
-        .ToListAsync();
+            .Where(s => s.SellerId == CurrentUserId)
+            .ToListAsync();
 
         if (sales != null)
             return new BaseResult<List<SaleResponse>>() { ErrorMessage = "The seller has no contracts" };
@@ -63,6 +66,7 @@ public class SaleService
             return new BaseResult<SaleResponse>() { ErrorMessage = "An agreement has already been concluded with this lead." };
 
         var sale = _mapper.Map<Sale>(dto);
+        sale.SellerId = CurrentUserId;
 
         await _dbContext.Sales.AddAsync(sale);
         await _dbContext.SaveChangesAsync();

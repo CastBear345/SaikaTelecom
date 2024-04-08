@@ -8,8 +8,4 @@ public record LeadCreateDto
     [Required]
     [Display(Name = "Id contact")]
     public long ContactId { get; set; }
-
-    [Required]
-    [Display(Name = "Id seller")]
-    public long? SellerId { get; set; }
 }

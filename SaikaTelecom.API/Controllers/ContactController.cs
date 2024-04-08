@@ -11,6 +11,7 @@ public class ContactController : ControllerBase
         _contactService = contactService;
     }
 
+    [Authorize(Roles = $"{nameof(Roles.Admin)},{nameof(Roles.Owner)},{nameof(Roles.Marketing)}")]
     [HttpGet("all")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<List<ContactDto>>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
@@ -25,6 +26,7 @@ public class ContactController : ControllerBase
         return BadRequest(response);
     }
 
+    [Authorize(Roles = $"{nameof(Roles.Sales)}")]
     [HttpGet("lead")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<List<ContactDto>>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
@@ -39,6 +41,7 @@ public class ContactController : ControllerBase
         return BadRequest(response);
     }
 
+    [Authorize(Roles = $"{nameof(Roles.Marketing)}")]
     [HttpPost("add")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<ContactDto>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
@@ -52,6 +55,7 @@ public class ContactController : ControllerBase
         return BadRequest(response);
     }
 
+    [Authorize(Roles = $"{nameof(Roles.Sales)},{nameof(Roles.Marketing)}")]
     [HttpPut("update/{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<ContactDto>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
@@ -66,6 +70,7 @@ public class ContactController : ControllerBase
         return BadRequest(response);
     }
 
+    [Authorize(Roles = $"{nameof(Roles.Marketing)}")]
     [HttpPut("change-status/{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<ContactDto>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]

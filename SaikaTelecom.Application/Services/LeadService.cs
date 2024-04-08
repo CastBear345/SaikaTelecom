@@ -3,12 +3,15 @@
 public class LeadService
 {
     private readonly ApplicationDbContext _dbContext;
+    private readonly HttpContext _httpContext;
     private readonly IMapper _mapper;
+    private long CurrentUserId => long.Parse(_httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-    public LeadService(ApplicationDbContext dbContext, IMapper mapper)
+    public LeadService(ApplicationDbContext dbContext, IMapper mapper, IHttpContextAccessor accessor)
     {
         _dbContext = dbContext;
         _mapper = mapper;
+        _httpContext = accessor.HttpContext ?? throw new ArgumentException(nameof(accessor.HttpContext));
     }
 
     /// <summary>
@@ -42,7 +45,7 @@ public class LeadService
         if (doesLeadExist) return new BaseResult<LeadResponse> { ErrorMessage = "Lead already exists." };
 
         var newLead = _mapper.Map<Lead>(dto);
-
+        newLead.SellerId = CurrentUserId;
         await _dbContext.Leads.AddAsync(newLead);
         await _dbContext.SaveChangesAsync();
 
@@ -62,7 +65,6 @@ public class LeadService
     public async Task<BaseResult<LeadResponse>> ChangeLeadStatus(long leadId, LeadStatus newStatus)
     {
         var lead = await _dbContext.Leads
-            .AsNoTracking()
             .FirstOrDefaultAsync(lead => lead.ContactId == leadId);
 
         if (lead != null)

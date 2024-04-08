@@ -11,6 +11,7 @@ public class SaleController : ControllerBase
         _saleService = saleService;
     }
 
+    [Authorize(Roles = $"{nameof(Roles.Admin)},{nameof(Roles.Owner)}")]
     [HttpGet("all")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<List<SaleResponse>>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
@@ -25,20 +26,22 @@ public class SaleController : ControllerBase
         return BadRequest(response);
     }
 
-    [HttpGet("{sellerId}")]
+    [Authorize(Roles = $"{nameof(Roles.Sales)}")]
+    [HttpGet("seller-sales")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<List<SaleResponse>>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedResult))]
     [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ForbidResult))]
-    public async Task<ActionResult<BaseResult<List<SaleResponse>>>> GetById(long sellerId)
+    public async Task<ActionResult<BaseResult<List<SaleResponse>>>> GetById()
     {
-        var response = await _saleService.GetBySellerId(sellerId);
+        var response = await _saleService.GetSellerSale();
         if (response.IsSuccess)
             return Ok(response);
 
         return BadRequest(response);
     }
 
+    [Authorize(Roles = $"{nameof(Roles.Sales)}")]
     [HttpPost("add")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResult<SaleResponse>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResult))]

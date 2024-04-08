@@ -1,7 +1,7 @@
 ﻿using SaikaTelecom.Domain.Enum;
 using System.ComponentModel.DataAnnotations;
 
-namespace SaikaTelecom.Domain.Contracts;
+namespace SaikaTelecom.Domain.Contacts;
 
 public class UpdateStatusInContactDto
 {
