@@ -11,6 +11,10 @@ public class SaleService
         _mapper = mapper;
     }
 
+    /// <summary>
+    /// Get all sales.
+    /// </summary>
+    /// <returns>A base result containing a list of sale responses or an error message.</returns>
     public async Task<BaseResult<List<SaleResponse>>> GetAllSales()
     {
         var sales = await _dbContext.Sales
@@ -23,6 +27,11 @@ public class SaleService
         return new BaseResult<List<SaleResponse>>() { Data = _mapper.Map<List<SaleResponse>>(sales) };
     }
 
+    /// <summary>
+    /// Get sales by seller ID.
+    /// </summary>
+    /// <param name="sellerId">The ID of the seller.</param>
+    /// <returns>A base result containing a list of sale responses or an error message.</returns>
     public async Task<BaseResult<List<SaleResponse>>> GetBySellerId(long sellerId)
     {
         var sales = await _dbContext.Sales
@@ -36,6 +45,11 @@ public class SaleService
         return new BaseResult<List<SaleResponse>>() { Data = _mapper.Map<List<SaleResponse>>(sales) };
     }
 
+    /// <summary>
+    /// Create a new sale with the provided information.
+    /// </summary>
+    /// <param name="dto">DTO containing sale details.</param>
+    /// <returns>A base result containing the sale response or an error message.</returns>
     public async Task<BaseResult<SaleResponse>> CreateSale(SaleGetDto dto)
     {
         if (dto == null)

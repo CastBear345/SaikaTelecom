@@ -3,7 +3,7 @@
 global using SaikaTelecom.Application.DependencyInjection;
 global using SaikaTelecom.Application.Services;
  
-global using SaikaTelecom.Domain.Contracts.SaleDtos;
+global using SaikaTelecom.Domain.Contracts.Sale;
 global using SaikaTelecom.Domain.Result;
  
 global using SaikaTelecom.DAL.DependencyInjection;

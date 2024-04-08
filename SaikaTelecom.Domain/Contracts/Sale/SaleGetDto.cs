@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SaikaTelecom.Domain.Contracts.SaleDtos;
+namespace SaikaTelecom.Domain.Contracts.Sale;
 
 public class SaleGetDto
 {
     [Required]
-    [Display(Name = "Идентификатор лида")]
+    [Display(Name = "Id lead")]
     public long LeadId { get; set; }
 
     [Required]
-    [Display(Name = "Идентификатор продавца")]
+    [Display(Name = "Id seller")]
     public long SellerId { get; set; }
 }
