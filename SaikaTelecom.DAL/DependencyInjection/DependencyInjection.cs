@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using SaikaTelecom.DAL;
-
-namespace FonTech.DAL.DependencyInjection;
+﻿namespace SaikaTelecom.DAL.DependencyInjection;
 
 public static class DependencyInjection
 {

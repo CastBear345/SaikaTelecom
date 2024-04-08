@@ -1,24 +1,30 @@
 ﻿using SaikaTelecom.Domain.Enum;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 
 namespace SaikaTelecom.Domain.Contracts.UserDtos;
 
-public class UserGetDto
+public class SignUpUserDto
 {
     [Required]
-    [Display(Name = "Id")]
-    public required long Id { get; init; }
+    [Display(Name = "Full Name")]
+    [MaxLength(100)]
+    public string? FullName { get; set; }
 
     [Required]
     [Display(Name = "E-mail address")]
     [MaxLength(100)]
     [EmailAddress]
-    public required string Email { get; init; }
+    public string Email { get; set; }
+
+    [Required]
+    [Display(Name = "Password")]
+    [MaxLength(100)]
+    [PasswordPropertyText]
+    public string Password { get; set; }
 
     [Required]
     [Display(Name = "User role")]
     [EnumDataType(typeof(Roles))]
-    public required Roles Role { get; init; }
+    public Roles Role { get; set; }
 }

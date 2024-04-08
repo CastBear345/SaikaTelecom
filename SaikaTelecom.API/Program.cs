@@ -1,16 +1,8 @@
-using Microsoft.EntityFrameworkCore;
-using FonTech.DAL.DependencyInjection;
-using SaikaTelecom.DAL;
-using SaikaTelecom.Application.DependencyInjection;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddAuthentication().AddCookie("cookie");
-builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDataAccessLayer(builder.Configuration);
 builder.Services.AddApplication();

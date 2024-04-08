@@ -1,10 +1,10 @@
-﻿namespace FonTech.Domain.Result;
+﻿namespace SaikaTelecom.Domain.Result;
 
 public class BaseResult
 {
     public bool IsSuccess => ErrorMessage == null;
 
-    public string ErrorMessage { get; set; }
+    public string? ErrorMessage { get; set; }
 }
 
 public class BaseResult<T> : BaseResult
@@ -17,5 +17,5 @@ public class BaseResult<T> : BaseResult
 
     public BaseResult() { }
 
-    public T Data { get; set; }
+    public T? Data { get; set; }
 }

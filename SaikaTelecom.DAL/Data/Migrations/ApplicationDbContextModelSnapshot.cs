@@ -3,20 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SaikaTelecom.DAL;
+using SaikaTelecom.DAL.Data;
 
 #nullable disable
 
 namespace SaikaTelecom.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240404055153_Add-User-Table")]
-    partial class AddUserTable
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +39,8 @@ namespace SaikaTelecom.DAL.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
@@ -60,8 +58,8 @@ namespace SaikaTelecom.DAL.Migrations
                         {
                             Id = 1L,
                             Email = "castbear@email.com",
-                            FullName = "ChangeTracker",
-                            PasswordHash = "$2a$11$qr4I/Isz7JlnnMvP4C/hjelK69OHev6Ief4iGDzUhQiuCZNgI1ZcO",
+                            FullName = "Tony Stark",
+                            PasswordHash = "$2a$11$ZxI0bOyjGGXl4NxaOnvenOI6NgHGh0Tlt9j4d0qCjjIRVIrsRcQam",
                             Role = 0
                         });
                 });

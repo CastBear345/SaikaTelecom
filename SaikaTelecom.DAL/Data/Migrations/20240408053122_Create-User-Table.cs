@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SaikaTelecom.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class AddUserTable : Migration
+    public partial class CreateUserTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace SaikaTelecom.DAL.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
@@ -31,7 +31,7 @@ namespace SaikaTelecom.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "BlockingDate", "Email", "FullName", "PasswordHash", "Role" },
-                values: new object[] { 1L, null, "castbear@email.com", "ChangeTracker", "$2a$11$qr4I/Isz7JlnnMvP4C/hjelK69OHev6Ief4iGDzUhQiuCZNgI1ZcO", 0 });
+                values: new object[] { 1L, null, "castbear@email.com", "Tony Stark", "$2a$11$ZxI0bOyjGGXl4NxaOnvenOI6NgHGh0Tlt9j4d0qCjjIRVIrsRcQam", 0 });
         }
 
         /// <inheritdoc />

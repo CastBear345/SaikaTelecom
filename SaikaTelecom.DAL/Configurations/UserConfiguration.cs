@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SaikaTelecom.Domain.Entities;
-using SaikaTelecom.Domain.Enum;
-
-namespace SaikaTelecom.DAL.Configurations;
+﻿namespace SaikaTelecom.DAL.Configurations;
 
 public class UserConfiguration : IEntityTypeConfiguration<User>
 {
@@ -12,6 +7,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder
             .Property(u => u.Id)
             .ValueGeneratedOnAdd();
+
+        builder
+            .Property(u => u.FullName)
+            .HasMaxLength(100);
 
         builder
             .Property(u => u.Email)
@@ -31,7 +30,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             new User()
             {
                 Id = 1,
-                FullName = "ChangeTracker",
+                FullName = "Tony Stark",
                 Email = "castbear@email.com",
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword("a123456a"),
                 Role = Roles.Owner
