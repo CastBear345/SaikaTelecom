@@ -1,4 +1,3 @@
-﻿
 global using AutoMapper;
 
 global using Microsoft.Extensions.DependencyInjection;
@@ -13,3 +12,5 @@ global using SaikaTelecom.Domain.Result;
 global using SaikaTelecom.Domain.Enum;
 
 global using SaikaTelecom.DAL.Data;
+
+global using SaikaTelecom.Domain.Contracts.Sale;

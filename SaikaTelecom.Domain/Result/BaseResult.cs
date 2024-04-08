@@ -9,13 +9,13 @@ public class BaseResult
 
 public class BaseResult<T> : BaseResult
 {
+    public T? Data { get; set; }
+
     public BaseResult(string errorMessage, T data)
     {
         ErrorMessage = errorMessage;
         Data = data;
     }
 
-    public BaseResult() { }
-
-    public T Data { get; set; }
+    public BaseResult() {}
 }

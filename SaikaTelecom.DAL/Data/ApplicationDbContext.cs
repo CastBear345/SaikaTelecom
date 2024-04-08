@@ -3,6 +3,7 @@
 public class ApplicationDbContext : DbContext
 {
     public DbSet<Contact> Contacts => Set<Contact>();
+    public DbSet<Sale> Sales => Set<Sale>();
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
@@ -14,5 +15,6 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new ContactConfiguration());
+        modelBuilder.ApplyConfiguration(new SaleConfiguration());
     }
 }

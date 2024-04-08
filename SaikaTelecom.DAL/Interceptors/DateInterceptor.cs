@@ -1,4 +1,4 @@
-﻿namespace SaikaTelecom.DAL.Interceptor;
+namespace SaikaTelecom.DAL.Interceptor;
 
 public class DateInterceptor : SaveChangesInterceptor
 {
@@ -21,6 +21,17 @@ public class DateInterceptor : SaveChangesInterceptor
             if (entry.State == EntityState.Modified)
             {
                 entry.Property(x => x.LastChanged).CurrentValue = DateTime.UtcNow;
+            }
+        }
+
+        var sales = dbContext.ChangeTracker.Entries<Sale>()
+            .Where(e => e.State == EntityState.Added)
+            .ToList();
+        foreach (var sale in sales)
+        {
+            if (sale.State == EntityState.Added)
+            {
+                sale.Property(x => x.DateOfSale).CurrentValue = DateTime.UtcNow;
             }
         }
 
