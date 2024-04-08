@@ -10,3 +10,4 @@ global using SaikaTelecom.DAL.Interceptor;
 global using SaikaTelecom.DAL.Data;
  
 global using SaikaTelecom.Domain.Entities;
+global using SaikaTelecom.Domain.Enum;

@@ -14,3 +14,5 @@ global using SaikaTelecom.Domain.Enum;
 global using SaikaTelecom.DAL.Data;
 
 global using SaikaTelecom.Domain.Contracts.Sale;
+
+global using SaikaTelecom.Domain.Contracts.Lead;

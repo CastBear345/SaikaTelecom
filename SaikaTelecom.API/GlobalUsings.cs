@@ -7,5 +7,7 @@ global using SaikaTelecom.Domain.Contracts;
 global using SaikaTelecom.Domain.Result;
 
 global using SaikaTelecom.Domain.Contracts.Sale;
- 
+global using SaikaTelecom.Domain.Contracts.Lead;
+global using SaikaTelecom.Domain.Enum;
+
 global using SaikaTelecom.DAL.DependencyInjection;

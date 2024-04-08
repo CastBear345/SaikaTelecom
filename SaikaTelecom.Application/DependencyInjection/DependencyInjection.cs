@@ -6,6 +6,7 @@ public static class DependencyInjection
     {
         services.AddAutoMapper(typeof(ContactMapping));
         services.AddAutoMapper(typeof(SaleMapping));
+        services.AddAutoMapper(typeof(LeadMapping));
 
         InitService(services);
     }
@@ -14,5 +15,6 @@ public static class DependencyInjection
     {
         services.AddScoped<ContactService>();
         services.AddScoped<SaleService>();
+        services.AddScoped<LeadService>();
     }
 }
